@@ -72,6 +72,8 @@ function displayOneProduct() {
       id: oneProduct.id,
       title: oneProduct.title,
       price: oneProduct.price,
+      discountedPrice: oneProduct.discountedPrice,
+      onSale: oneProduct.onSale,
       image: oneProduct.image.url,
       size: selectedSize,
       quantity: 1,

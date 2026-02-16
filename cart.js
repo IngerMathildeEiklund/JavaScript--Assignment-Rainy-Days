@@ -6,6 +6,7 @@ loadCart();
 const cartSummaryContainer = document.getElementById(
   "cart-and-summary-container",
 );
+cartSummaryContainer.classList.add("grid-2fr");
 
 const cartContainer = document.getElementById("cart-container");
 const summaryContainer = document.getElementById("summary-container");
@@ -22,7 +23,9 @@ summaryContainer.append(summaryTitle);
 function displayCart() {
   if (cart.length === 0) {
     cartContainer.innerHTML = `<h3> Your cart </h3> <p> Your cart is empty </p>`;
+    summaryContainer.innerHTML = "";
   } else {
+    summaryContainer.innerHTML = "";
     cartContainer.innerHTML = "<h3> Your cart </h3>";
     const clearCartBTN = document.createElement("button");
     clearCartBTN.textContent = `Clear cart`;
@@ -36,8 +39,9 @@ function displayCart() {
         displayCart();
       }
     });
-
+    let total = 0;
     cart.forEach((item, index) => {
+      total += item.price ? item.discountedPrice : item.price;
       const productContainer = document.createElement("div");
       const productImage = document.createElement("img");
       const productName = document.createElement("h4");
@@ -47,15 +51,10 @@ function displayCart() {
       productImage.src = item.image;
       productImage.classList.add("cart-image");
       productName.textContent = item.title;
-      productPrice.textContent = `Total: $${item.price}`;
+      productPrice.textContent = ` $${item.price}`;
       productSize.textContent = `Size: ${item.size} `;
       productQuantity.textContent = `Quantity: ${item.quantity}`;
-      if (item.onSale) {
-        const salePrice = document.createElement("p");
-        salePrice.classList.add("sale-price");
-        productPrice.classList.add("strike");
-        salePrice.textContent = item.discountedPrice;
-      }
+
       const deleteBTN = document.createElement("button");
       deleteBTN.textContent = "Remove item";
       deleteBTN.addEventListener("click", () => {
@@ -67,11 +66,36 @@ function displayCart() {
       productContainer.appendChild(productImage);
       productContainer.appendChild(productName);
       productContainer.appendChild(productSize);
+      if (item.onSale) {
+        const salePrice = document.createElement("p");
+        salePrice.classList.add("sale-price");
+        productPrice.classList.add("strike");
+        salePrice.textContent = `Sale! Now $${item.discountedPrice}`;
+        productContainer.appendChild(salePrice);
+      }
       productContainer.appendChild(productPrice);
+
       productContainer.appendChild(productQuantity);
       productContainer.appendChild(deleteBTN);
       cartContainer.appendChild(productContainer);
+      const orderTitleSummary = document.createElement("li");
+      const orderPriceSummary = document.createElement("li");
+      summaryContainer.appendChild(orderTitleSummary);
+      summaryContainer.appendChild(orderPriceSummary);
+      orderTitleSummary.textContent = item.title;
+      orderPriceSummary.textContent = item.onSale
+        ? item.discountedPrice
+        : item.price;
     });
+    const orderTotal = document.createElement("p");
+    orderTotal.textContent = `Order total: $${total}`;
+    summaryContainer.appendChild(orderTotal);
+    const checkoutBTN = document.createElement("button");
+    checkoutBTN.textContent = `Continue to checkout`;
+    checkoutBTN.addEventListener("click", () => {
+      window.location.href = `confirmation.html`;
+    });
+    summaryContainer.appendChild(checkoutBTN);
   }
 }
 
