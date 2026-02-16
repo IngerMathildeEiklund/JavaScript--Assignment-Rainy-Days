@@ -7,18 +7,18 @@ console.log("ID from URL:", id);
 const endpoint = `${ONE_PRODUCT_ENDPOINT}/${id}`;
 console.log("Full endpoint", url + endpoint);
 let oneProduct = {};
-let cart = [];
+export let cart = [];
 
-function saveCart() {
+export function saveCart() {
   localStorage.setItem("shoppingCart", JSON.stringify(cart));
 }
-function loadCart() {
+export function loadCart() {
   const savedCart = localStorage.getItem("shoppingCart");
   if (savedCart) {
     cart = JSON.parse(savedCart);
   }
 }
-function addToCart(product) {
+export function addToCart(product) {
   cart.push(product);
   saveCart();
   //add a toast notification that item is added to cart
@@ -126,6 +126,8 @@ function displayOneProduct() {
   sizeAndBTNcontainer.appendChild(addToCartBTN);
   productInfo.appendChild(sizeAndBTNcontainer);
 }
+if (id) {
+  getOneProduct();
+}
 
-getOneProduct();
 loadCart();

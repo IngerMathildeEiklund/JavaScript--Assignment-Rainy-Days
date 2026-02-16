@@ -40,7 +40,7 @@ function displayProducts(products) {
     productImage.src = product.image.url;
     productImage.alt = product.title;
     productName.textContent = product.title;
-    productPrice.textContent = product.price;
+    productPrice.textContent = `$${product.price}`;
     sectionContainer.append(productContainer);
     productContainer.append(productImage, productName, productPrice);
 
@@ -48,7 +48,7 @@ function displayProducts(products) {
       const productSalePrice = document.createElement("p");
       productSalePrice.classList.add("sale-price");
       productPrice.classList.add("strike");
-      productSalePrice.textContent = `On sale! Now ${product.discountedPrice}`;
+      productSalePrice.textContent = `On sale! Now $${product.discountedPrice}`;
       productContainer.append(productSalePrice);
     }
   }
