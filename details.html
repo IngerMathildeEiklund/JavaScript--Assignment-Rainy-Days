@@ -94,15 +94,6 @@
           <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i
         ></a>
       </div>
-      <div class="search-bar-div" role="search">
-        <input
-          class="searchbar"
-          aria-label="Search"
-          type="text"
-          placeholder="Search"
-        />
-        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-      </div>
     </header>
 
     <main class="main">
@@ -110,7 +101,7 @@
         <div class="details-ordersummary-content">
           <section class="details-sections" aria-label="Checkout details">
             <div class="details-text-container">
-              <h1>Checkout details</h1>
+              <h2>Checkout details</h2>
             </div>
             <label for="firstname" class="sr-only">First name</label>
             <input
@@ -167,52 +158,8 @@
               required
             />
           </section>
-          <section class="ordersummary-section" aria-label="Order summary">
-            <div class="ordersummary-text-container">
-              <h1>Order summary</h1>
-            </div>
-            <div class="image-text-container">
-              <div class="ordersummary-image-container">
-                <img src="images/SCOTTmain.png" alt="photo of scott jacket" />
-              </div>
-              <div class="ordersummary-text">
-                <div class="productname-container">
-                  <h3>SCOTT</h3>
-                  <p>Hardshell superior</p>
-                </div>
-                <p>Color: Black</p>
-                <p>Size: Medium</p>
-                <div class="quantity-total-container">
-                  <p>Quantity: 1</p>
-                  <p>100.99 £</p>
-                </div>
-              </div>
-            </div>
-            <label for="discountcode-giftcard" class="sr-only"
-              >Giftcard or discount</label
-            >
-            <input
-              class="inputfield-details"
-              type="text"
-              id="discountcode-giftcard"
-              name="discountcode-giftcard"
-              placeholder="Discount code / Giftcard"
-            />
-            <div class="definition-list s-a-h">
-              <dl class="order-total-dl">
-                <dt class="order-label">Shipping and handling</dt>
-                <dd class="order-value">25 £</dd>
-              </dl>
-            </div>
-
-            <div class="definition-list">
-              <dl class="order-total-dl">
-                <dt class="order-label">Total</dt>
-                <dd class="order-value">125.99 £</dd>
-              </dl>
-            </div>
-
-            <hr aria-hidden="true" />
+          <section id="ordersummary-section" aria-label="Order summary">
+            <h2>Order summary</h2>
           </section>
         </div>
 
@@ -349,6 +296,7 @@
           &copy; 2020 Rainydays, inc. All rights reserved.
         </p>
       </div>
+      <script type="module" src="details.js"></script>
     </footer>
   </body>
 </html>

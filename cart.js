@@ -1,5 +1,6 @@
 // import { url, ALL_PRODUCTS_ENDPOINT, ONE_PRODUCT_ENDPOINT } from "./script.js";
-import { cart, loadCart, saveCart, addToCart } from "./productpage.js";
+import { cart, loadCart, saveCart } from "./productpage.js";
+import { renderOrderSummary } from "./render-order.js";
 
 loadCart();
 
@@ -26,6 +27,7 @@ function displayCart() {
     summaryContainer.innerHTML = "";
   } else {
     summaryContainer.innerHTML = "<h2> Order summary </h2>";
+
     cartContainer.innerHTML = "<h2> Your cart </h2>";
     const clearCartBTN = document.createElement("button");
     clearCartBTN.textContent = `Clear cart`;
@@ -40,9 +42,8 @@ function displayCart() {
         displayCart();
       }
     });
-    let total = 0;
+    // let total = 0;
     cart.forEach((item, index) => {
-      total += item.price ? item.discountedPrice : item.price;
       const productContainer = document.createElement("div");
       const productImage = document.createElement("img");
       const productName = document.createElement("h3");
@@ -79,23 +80,13 @@ function displayCart() {
       productContainer.appendChild(productQuantity);
       productContainer.appendChild(deleteBTN);
       cartContainer.appendChild(productContainer);
-      const orderTitleSummary = document.createElement("li");
-      const orderPriceSummary = document.createElement("li");
-      summaryContainer.appendChild(orderTitleSummary);
-      summaryContainer.appendChild(orderPriceSummary);
       cartContainer.appendChild(clearCartBTN);
-      orderTitleSummary.textContent = item.title;
-      orderPriceSummary.textContent = item.onSale
-        ? `$${item.discountedPrice}`
-        : `$${item.price}`;
     });
-    const orderTotal = document.createElement("h3");
-    orderTotal.textContent = `Order total: $${total.toFixed(2)}`;
-    summaryContainer.appendChild(orderTotal);
+    renderOrderSummary(cart, summaryContainer);
     const checkoutBTN = document.createElement("button");
     checkoutBTN.textContent = `Continue to checkout`;
     checkoutBTN.addEventListener("click", () => {
-      window.location.href = `confirmation.html`;
+      window.location.href = `details.html`;
     });
     summaryContainer.appendChild(checkoutBTN);
   }

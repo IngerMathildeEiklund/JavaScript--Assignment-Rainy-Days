@@ -83,10 +83,10 @@ width: 6rem;
   flex-direction: row;
 }
 .details-sections {
-  order:1;
+  order:2;
 }
 .ordersummary-section {
-  order:2;
+  order:1;
 }
 .payment-options-container {
   flex-direction: row;
