@@ -99,7 +99,10 @@
     <main class="main">
       <form>
         <div class="details-ordersummary-content">
-          <section class="details-sections card" aria-label="Checkout details">
+          <section
+            class="details-sections card-cart"
+            aria-label="Checkout details"
+          >
             <div class="details-text-container">
               <h2>Checkout details</h2>
             </div>
@@ -157,6 +160,39 @@
               placeholder="Billing address"
               required
             />
+            <h4>We accept these payment options</h4>
+            <div id="payment-options">
+              <a
+                href="https://www.mastercard.com/no/nb.html"
+                target="_blank"
+                aria-label="We accept Mastercard"
+              >
+                <img
+                  src="svg/mastercard-svgrepo-com.svg"
+                  alt="Mastercard payment option"
+                />
+              </a>
+              <a
+                href="https://www.visa.com/en-us"
+                target="_blank"
+                aria-label="We accept Visa"
+              >
+                <img
+                  src="svg/visa-4-logo-svgrepo-com.svg"
+                  alt="Visa payment option"
+                />
+              </a>
+              <a
+                href="https://www.americanexpress.com/nb-no/"
+                target="_blank"
+                aria-label="We accept American Express"
+              >
+                <img
+                  src="svg/amex-svgrepo-com.svg"
+                  alt="American Express payment option"
+                />
+              </a>
+            </div>
           </section>
           <section
             id="ordersummary-section"

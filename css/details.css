@@ -14,7 +14,15 @@
   display: flex;
   flex-direction: column;
 }
-
+#payment-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+img {
+  width: clamp(40px, 5vw, 60px);
+  height: auto;
+}
 
 .inputfield-details {
   margin-block: 0.5rem;
@@ -25,29 +33,6 @@
   font-size: 1rem;
   border: 2px solid var(--main-text-color);
   margin-bottom: 1rem;
-}
-
-
-.image-text-container {
-  display: flex;;
-}
-.quantity-total-container {
-  display:flex;
-  justify-content: space-between;
-  gap:2rem;
-}
-.productname-container {
-  margin-bottom: 2rem;
-}
-
-.paymentoptions-container {
-  display:flex;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-.pay-order-button-container {
-  margin-block: 2rem;
 }
 
 

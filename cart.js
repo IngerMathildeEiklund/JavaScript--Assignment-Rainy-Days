@@ -10,9 +10,9 @@ const cartSummaryContainer = document.getElementById(
 
 const cartContainer = document.getElementById("cart-container");
 const summaryContainer = document.getElementById("summary-container");
-summaryContainer.classList.add("card");
+summaryContainer.classList.add("card-cart");
 summaryContainer.classList.add("flex-start");
-cartContainer.classList.add("card");
+cartContainer.classList.add("card-cart");
 const cartTitle = document.createElement("h2");
 const summaryTitle = document.createElement("h2");
 cartTitle.textContent = "Your cart";

@@ -5,12 +5,7 @@
   justify-self: center;
   gap:1rem;
 }
-.order-confirmation-container {
-  order:1;
-}
-.order-summary-container {
-  order:2;
-}
+
 .image-text-summary-container {
   display:flex;
 }
@@ -20,25 +15,10 @@
 .image-summary-container img {
   width: clamp(10rem,10vw,12rem);
 }
-.product-summary-container {
-  flex-wrap: nowrap;
-}
-.order-summary-text-container, .order-confirmation-text-container {
-  margin-block: 2rem;
-}
+
+
 .billing-address-container {
   line-height: 2.5rem;
-}
-.scott-header-container {
-  margin-bottom: 2rem;
-}
-.totalsum-container {
-
-  display:flex;
-  justify-self: center;
-  margin-top: 3rem;
-  justify-content: space-between;
-  gap:2rem;
 }
 .horizontal-hr-order-summary{
   margin-top: 2rem;

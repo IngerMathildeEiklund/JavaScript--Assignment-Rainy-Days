@@ -79,6 +79,14 @@ function displayProducts(products) {
         );
         productContainer.append(productSalePrice);
       }
+      if (product.favorite === true) {
+        const popularDiv = document.createElement("div");
+        const popularTag = document.createElement("p");
+        popularDiv.classList.add("popular");
+        popularTag.textContent = `Best seller!`;
+        popularDiv.appendChild(popularTag);
+        productContainer.appendChild(popularDiv);
+      }
     }
   } catch (error) {
     sectionContainer.innerHTML = `<p> Could not load products, please try again later </p> ${error}`;
@@ -106,6 +114,37 @@ function filterByAll() {
   if (filterStatus)
     filterStatus.textContent = `Showing ${allProducts.length} products`;
 }
+function filterByBestSeller() {
+  const filtered = allProducts.filter((product) => product.favorite === true);
+  displayProducts(filtered);
+  const filterStatus = document.getElementById("filter-status");
+  if (filterStatus)
+    filterStatus.textContent = `Showing ${filtered.length} products`;
+}
+function sortByHighToLowPrice() {
+  const sorted = [...allProducts].sort((a, b) => {
+    const priceA = a.discountedPrice || a.price;
+    const priceB = b.discountedPrice || b.price;
+
+    return priceB - priceA;
+  });
+  const filterStatus = document.getElementById("filter-status");
+  if (filterStatus)
+    filterStatus.textContent = `Showing ${sorted.length} products`;
+  displayProducts(sorted);
+}
+function sortByLowToHighPrice() {
+  const sorted = [...allProducts].sort((a, b) => {
+    const priceA = a.discountedPrice || a.price;
+    const priceB = b.discountedPrice || b.price;
+
+    return priceA - priceB;
+  });
+  const filterStatus = document.getElementById("filter-status");
+  if (filterStatus)
+    filterStatus.textContent = `Showing ${sorted.length} products`;
+  displayProducts(sorted);
+}
 
 getAllProducts(url, ALL_PRODUCTS_ENDPOINT);
 
@@ -119,6 +158,12 @@ if (document.getElementById("filter-dropdown")) {
       filterByMale();
     } else if (selectedFilter === "female") {
       filterByFemale();
+    } else if (selectedFilter === "best-seller") {
+      filterByBestSeller();
+    } else if (selectedFilter === "high-low") {
+      sortByHighToLowPrice();
+    } else if (selectedFilter === "low-high") {
+      sortByLowToHighPrice();
     }
   });
 }
