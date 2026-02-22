@@ -2,16 +2,22 @@
 import { renderOrderSummary } from "./render-order.js";
 
 const cart = JSON.parse(localStorage.getItem("shoppingCart")) || [];
-const SummaryContainer = document.getElementById("ordersummary-section");
-SummaryContainer.classList.add("card-cart");
+const summaryContainer = document.getElementById("ordersummary-section");
 
-renderOrderSummary(cart, SummaryContainer);
-const payOrderBTN = document.createElement("button");
-payOrderBTN.classList.add("btn");
-payOrderBTN.textContent = "Pay order";
-SummaryContainer.appendChild(payOrderBTN);
+if (!summaryContainer) {
+  console.error("Required elements missing.");
+} else {
+  summaryContainer.classList.add("card-cart");
+  renderOrderSummary(cart, summaryContainer);
 
-payOrderBTN.addEventListener("click", () => {
-  window.location.href = "confirmation.html";
-  localStorage.clear();
-});
+  const payOrderBTN = document.createElement("button");
+  payOrderBTN.classList.add("btn");
+  payOrderBTN.textContent = "Pay order";
+  payOrderBTN.type = "button";
+  summaryContainer.appendChild(payOrderBTN);
+
+  payOrderBTN.addEventListener("click", () => {
+    localStorage.removeItem("shoppingCart");
+    window.location.href = "confirmation.html";
+  });
+}

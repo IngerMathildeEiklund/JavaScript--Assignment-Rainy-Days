@@ -18,8 +18,6 @@
   width:100%;
   overflow:hidden;
 }
-
-
 .hero-section {
   position: relative;
   display: flex;
@@ -38,8 +36,8 @@
 .heading-and-filter {
   display: flex;
   flex-direction: column;
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 .grid {
   display: grid;
@@ -49,29 +47,6 @@ align-items: center;
   margin: 0 auto;
 }
 
-.card {
-  position: relative;
-  padding-inline: 0.5rem;
-  padding-block: 0.5rem;
-  box-shadow: 2px 2px 5px 1px rgb(214, 214, 214);
-  border-color: rgb(150, 150, 150);
-  border-radius: 1rem;
-}
-
-.card-img{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-
-
-.new-arrivals img {
-object-fit: contain;
-width: 200px;
-height: 200px;
-}
 
 .our-products-image {
   width: 100%;
@@ -85,8 +60,6 @@ height: 200px;
   font-weight: 400;
   margin:2rem;
 }
-
-
 
 .text-container {
   display: flex;

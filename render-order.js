@@ -1,5 +1,6 @@
 "use strict";
 export function renderOrderSummary(cart, summaryContainer) {
+  if (!cart || cart.length === 0) return;
   const summaryList = document.createElement("ul");
   summaryList.setAttribute("aria-label", "Order summary items");
   summaryContainer.appendChild(summaryList);

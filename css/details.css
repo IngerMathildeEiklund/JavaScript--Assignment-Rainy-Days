@@ -1,8 +1,5 @@
 
-.inputfield-details:focus {
-  outline: 3px solid var(--inputfield-focus-color);
-  outline-offset: 2px;
-}
+
 .details-ordersummary-content {
   display:flex;
   flex-direction: column;
@@ -23,19 +20,6 @@ img {
   width: clamp(40px, 5vw, 60px);
   height: auto;
 }
-
-.inputfield-details {
-  margin-block: 0.5rem;
-  padding-inline: 1rem;
-  padding-block: 0.8rem;
-  border-radius: 0.5rem;
-  width:20rem;
-  font-size: 1rem;
-  border: 2px solid var(--main-text-color);
-  margin-bottom: 1rem;
-}
-
-
 
 @media (min-width: 768px) {
 .details-ordersummary-content {

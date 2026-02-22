@@ -1,11 +1,9 @@
-import { url, ALL_PRODUCTS_ENDPOINT, ONE_PRODUCT_ENDPOINT } from "./script.js";
+import { url, ONE_PRODUCT_ENDPOINT } from "./script.js";
 import { showToastNotification } from "./messages.js";
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
-console.log("ID from URL:", id);
 
 const endpoint = `${ONE_PRODUCT_ENDPOINT}/${id}`;
-console.log("Full endpoint", url + endpoint);
 let oneProduct = {};
 export let cart = [];
 
@@ -21,11 +19,15 @@ export function loadCart() {
 export function addToCart(product) {
   cart.push(product);
   saveCart();
-  showToastNotification(`${oneProduct.title} added to cart!`, "success");
+  showToastNotification(`${product.title} added to cart!`, "success");
 }
 const productContainer = document.getElementById("product-container");
 
 async function getOneProduct() {
+  if (!productContainer) {
+    console.error("Product container not found, could not get product");
+    return;
+  }
   try {
     const response = await fetch(url + endpoint);
     if (!response.ok) {
@@ -35,6 +37,7 @@ async function getOneProduct() {
     oneProduct = result.data;
     displayOneProduct();
   } catch (error) {
+    console.error(error);
     const errorMsg = document.createElement("p");
     errorMsg.setAttribute("role", "alert");
     errorMsg.textContent = "Something went wrong, please try again later.";
@@ -49,6 +52,10 @@ function displayOneProduct() {
   const sizeAndBTNcontainer = document.getElementById(
     "size-dropdown-and-button-container",
   );
+  if (!imageContainer || !productInfo || !sizeAndBTNcontainer) {
+    console.error("Required elements are missing to display product");
+    return;
+  }
   const sizeDropdown = document.createElement("select");
   sizeDropdown.classList.add("dropdown");
   const sizePlaceholder = document.createElement("option");
@@ -151,6 +158,9 @@ function displayOneProduct() {
 }
 if (id) {
   getOneProduct();
+} else if (productContainer) {
+  productContainer.innerHTML =
+    "<p> Product not found. Please try clicking another product </p>";
 }
 
 loadCart();

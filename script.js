@@ -6,6 +6,9 @@ export const ONE_PRODUCT_ENDPOINT = "/rainy-days";
 let allProducts = [];
 const sectionContainer = document.querySelector(".new-arrivals");
 async function getAllProducts(url, endpoint) {
+  if (!sectionContainer) {
+    return;
+  }
   try {
     const response = await fetch(url + endpoint);
 
@@ -14,10 +17,14 @@ async function getAllProducts(url, endpoint) {
     }
 
     const result = await response.json();
+    if (!Array.isArray(result.data)) {
+      throw new Error("Unexpected API response format");
+    }
     allProducts = result.data;
 
     displayProducts(allProducts);
   } catch (error) {
+    console.error(error);
     sectionContainer.innerHTML = `<p> Could not load products, please try again later </p> ${error}`;
   }
 }
@@ -32,6 +39,10 @@ function displayProducts(products) {
       return;
     }
     sectionContainer.innerHTML = "";
+    if (products.length === 0) {
+      sectionContainer.innerHTML = "<p> No products found </p>";
+      return;
+    }
 
     for (const product of products) {
       const productContainer = document.createElement("div");
@@ -39,45 +50,46 @@ function displayProducts(products) {
       const imageContainer = document.createElement("div");
       const productName = document.createElement("h3");
       const productPrice = document.createElement("p");
+
       productContainer.classList.add("card");
-
-      productContainer.addEventListener("click", () => {
-        window.location.href = `productpage.html?id=${product.id}`;
-      });
-
+      imageContainer.classList.add("card-img");
       productContainer.setAttribute("role", "button");
       productContainer.setAttribute("tabindex", "0");
       productContainer.setAttribute("aria-label", `View ${product.title}`);
+
+      productImage.src = product.image.url;
+      productImage.alt = product.title;
+
+      productName.textContent = product.title;
+
+      productPrice.textContent = `$${product.price}`;
+      productPrice.setAttribute(
+        "aria-label",
+        `Original price $${product.price}`,
+      );
+      productContainer.addEventListener("click", () => {
+        window.location.href = `productpage.html?id=${product.id}`;
+      });
 
       productContainer.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " ") {
           window.location.href = `productpage.html?id=${product.id}`;
         }
       });
-      productImage.src = product.image.url;
-      productImage.alt = product.title;
-      productName.textContent = product.title;
-      productPrice.textContent = `$${product.price}`;
-      productPrice.setAttribute(
-        "aria-label",
-        `Original price $${product.price}`,
-      );
-
-      sectionContainer.append(productContainer);
-      productContainer.append(imageContainer, productName, productPrice);
       imageContainer.append(productImage);
-      imageContainer.classList.add("card-img");
-
+      productContainer.append(imageContainer, productName, productPrice);
+      sectionContainer.append(productContainer);
       if (product.onSale) {
         const productSalePrice = document.createElement("p");
         productSalePrice.classList.add("sale-price");
-        productPrice.classList.add("strike");
         productSalePrice.textContent = `On sale! Now $${product.discountedPrice}`;
         productSalePrice.setAttribute(
           "aria-label",
           `Sale price $${product.discountedPrice}`,
         );
-        productContainer.append(productSalePrice);
+        productPrice.classList.add("strike");
+
+        productPrice.after(productSalePrice);
       }
       if (product.favorite === true) {
         const popularDiv = document.createElement("div");
@@ -89,7 +101,9 @@ function displayProducts(products) {
       }
     }
   } catch (error) {
-    sectionContainer.innerHTML = `<p> Could not load products, please try again later </p> ${error}`;
+    console.error(error);
+    sectionContainer.innerHTML =
+      "<p> Could not load products, please try again later </p>";
   }
 }
 

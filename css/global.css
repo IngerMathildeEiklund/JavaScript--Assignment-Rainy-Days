@@ -18,7 +18,25 @@
   --nav-desktop-text-color-focus-hover: #fffff4;
   --gray: rgb(104, 104, 104);
 }
+.card {
+  position: relative;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  box-shadow: 2px 2px 5px 1px rgb(214, 214, 214);
+  border-color: rgb(150, 150, 150);
+  border-radius: 1rem;
+  cursor: pointer;
+}
 
+.card-img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-img img {
+  max-width: 100%;
+  height: clamp(150px, 20vw, 300px);
+}
 .dropdown {
   font-family: 'Open sans';
   font-weight: 600;
@@ -27,7 +45,8 @@
   border-color: var(--gray);
   color: var(--main-text-color);
   padding-inline: 1rem;
-    margin-block: 1rem;
+  margin-block: 1rem;
+  cursor: pointer;
 }
 .error-message {
   background-color: red;
@@ -88,6 +107,7 @@ object-fit: contain;
   font-size: 1rem;
   border-radius: 0.5rem;
   margin-block: 1rem;
+  cursor: pointer;
 }
 .clearBTN {
   font-family: 'Open sans';
@@ -99,6 +119,7 @@ object-fit: contain;
   font-size: 1rem;
   border-radius: 0.5rem;
   margin-bottom: 1rem;
+  cursor: pointer;
 }
 
 #toast-container {
@@ -158,8 +179,22 @@ padding-bottom: 2rem;
   padding: 0;
   margin:-1px;
   overflow:hidden;
-
 }
+.inputfield-details:focus {
+  outline: 3px solid var(--inputfield-focus-color);
+  outline-offset: 2px;
+}
+.inputfield-details {
+  margin-block: 0.5rem;
+  padding-inline: 1rem;
+  padding-block: 0.8rem;
+  border-radius: 0.5rem;
+  width:20rem;
+  font-size: 1rem;
+  border: 2px solid var(--main-text-color);
+  margin-bottom: 1rem;
+}
+
 h1 {
   font-family: "Open sans",'Helvetica';
   color: var(--main-text-color);
