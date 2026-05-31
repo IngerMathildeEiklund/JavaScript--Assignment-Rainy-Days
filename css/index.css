@@ -46,6 +46,12 @@
   max-width: 100rem;
   margin: 0 auto;
 }
+.search-dropdown-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 
 
 .our-products-image {

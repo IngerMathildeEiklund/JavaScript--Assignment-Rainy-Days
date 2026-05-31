@@ -77,38 +77,13 @@
             src="images/RainyDays_Logo.png"
             alt="Rainy Days logo"
         /></a>
-        <div class="searchbar-container" role="search">
-          <input
-            class="searchbar-desktop"
-            aria-label="Search"
-            type="text"
-            placeholder="Search"
-          />
-          <i
-            class="fa-solid fa-magnifying-glass magnifying-glass-desktop"
-            aria-hidden="true"
-          ></i>
-        </div>
+
         <a class="shoppingbag-box" href="cart.html" aria-label="Shopping bag">
           <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i
         ></a>
       </div>
     </header>
-    <section class="hero-section">
-      <div class="hero-image-container">
-        <img
-          class="hero-image"
-          src="images/tristan-pineda-iqRPZhNsTXE-unsplash-desktop.jpg"
-          fetchpriority="high"
-          alt="Photo of a man in rainjacket in a forest"
-        />
-        <div class="image-overlay"></div>
 
-        <h1 class="hero-text">
-          YOUR <span>JOURNEY</span> <span>BEGINS </span> <span>TODAY </span>
-        </h1>
-      </div>
-    </section>
     <main class="main">
       <div class="heading-and-filter">
         <h1 class="margin-block">OUR PRODUCTS</h1>
@@ -117,14 +92,25 @@
           price</label
         >
         <p class="sr-only" aria-live="polite" id="filter-status"></p>
-        <select class="dropdown margin-block" id="filter-dropdown">
-          <option value="all">All products</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="best-seller">Best seller</option>
-          <option value="high-low">Price: High-Low</option>
-          <option value="low-high">Price: Low-High</option>
-        </select>
+        <div class="search-dropdown-wrapper">
+          <select class="dropdown" id="filter-dropdown">
+            <option value="all">All products</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="best-seller">Best seller</option>
+            <option value="high-low">Price: High-Low</option>
+            <option value="low-high">Price: Low-High</option>
+          </select>
+          <div class="searchbar-container" role="search">
+            <input
+              id="searchbar"
+              class="searchbar-desktop"
+              aria-label="Search"
+              type="text"
+              placeholder="Search"
+            />
+          </div>
+        </div>
       </div>
       <section class="new-arrivals grid"></section>
       <p aria-live="polite" id="loading-status">Loading products...</p>

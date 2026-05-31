@@ -5,6 +5,7 @@ export const ALL_PRODUCTS_ENDPOINT = "/rainy-days";
 export const ONE_PRODUCT_ENDPOINT = "/rainy-days";
 let allProducts = [];
 const sectionContainer = document.querySelector(".new-arrivals");
+
 async function getAllProducts(url, endpoint) {
   if (!sectionContainer) {
     return;
@@ -21,6 +22,7 @@ async function getAllProducts(url, endpoint) {
       throw new Error("Unexpected API response format");
     }
     allProducts = result.data;
+    console.log(allProducts);
 
     displayProducts(allProducts);
   } catch (error) {
@@ -39,7 +41,8 @@ function displayProducts(products) {
     }
     sectionContainer.innerHTML = "";
     if (products.length === 0) {
-      sectionContainer.innerHTML = "<p> No products found </p>";
+      sectionContainer.innerHTML =
+        "<p class='centered'> No products found matching search </p>";
       return;
     }
 
@@ -159,6 +162,19 @@ function sortByLowToHighPrice() {
 }
 
 getAllProducts(url, ALL_PRODUCTS_ENDPOINT);
+
+const searchbar = document.getElementById("searchbar");
+searchbar.addEventListener("input", (event) => {
+  const searchTerm = event.target.value.toLowerCase().trim();
+
+  const filteredProducts = allProducts.filter((product) => {
+    return product.title.toLowerCase().includes(searchTerm);
+  });
+  displayProducts(filteredProducts);
+
+  console.log(searchTerm);
+  console.log("user is typing.....");
+});
 
 if (document.getElementById("filter-dropdown")) {
   const filterDropdown = document.getElementById("filter-dropdown");

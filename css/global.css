@@ -37,7 +37,7 @@
   max-width: 100%;
   height: clamp(150px, 20vw, 300px);
 }
-.dropdown {
+.dropdown, #searchbar {
   font-family: 'Open sans';
   font-weight: 600;
   border: 1px solid;
@@ -45,8 +45,12 @@
   border-color: var(--gray);
   color: var(--main-text-color);
   padding-inline: 1rem;
-  margin-block: 1rem;
+
   cursor: pointer;
+}
+
+#searchbar {
+padding: 1rem;
 }
 .error-message {
   background-color: red;
@@ -184,6 +188,14 @@ padding-bottom: 2rem;
   outline: 3px solid var(--inputfield-focus-color);
   outline-offset: 2px;
 }
+.centered {
+grid-column-start: 1;
+grid-column: span 2;
+justify-content: center;
+align-items: center;
+margin: 0 auto;
+margin-block: 3rem;
+}
 .inputfield-details {
   margin-block: 0.5rem;
   padding-inline: 1rem;
@@ -273,6 +285,11 @@ p, a {
 }
 .button{
     font-size: 1.125rem;
+}
+.centered {
+  grid-column-start: 2; 
+  grid-column: 2 / span 2;
+
 }
 .dropdown {
   font-family: 'Open sans';
