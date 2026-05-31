@@ -45,12 +45,13 @@
   gap: 1rem;
   max-width: 100rem;
   margin: 0 auto;
+  margin-inline: 1rem;
 }
 .search-dropdown-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 3rem;
 }
 
 
@@ -76,7 +77,7 @@
 @media (min-width: 768px) {
 .grid {
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 2rem;
+  gap: 3rem;
 }
 
   .hero-text {
@@ -94,13 +95,9 @@
 
 }
 @media (min-width: 1025px) {
-
-.hero-text {
-  font-size: 5rem;
-}
 .grid {
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 2rem;
+  gap: 3rem;
 }
 
 }

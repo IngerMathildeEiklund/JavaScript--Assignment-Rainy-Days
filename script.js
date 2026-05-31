@@ -22,7 +22,6 @@ async function getAllProducts(url, endpoint) {
       throw new Error("Unexpected API response format");
     }
     allProducts = result.data;
-    console.log(allProducts);
 
     displayProducts(allProducts);
   } catch (error) {
@@ -84,7 +83,7 @@ function displayProducts(products) {
       if (product.onSale) {
         const productSalePrice = document.createElement("p");
         productSalePrice.classList.add("sale-price");
-        productSalePrice.textContent = `On sale! Now $${product.discountedPrice}`;
+        productSalePrice.textContent = `$${product.discountedPrice}`;
         productSalePrice.setAttribute(
           "aria-label",
           `Sale price $${product.discountedPrice}`,
@@ -163,18 +162,17 @@ function sortByLowToHighPrice() {
 
 getAllProducts(url, ALL_PRODUCTS_ENDPOINT);
 
-const searchbar = document.getElementById("searchbar");
-searchbar.addEventListener("input", (event) => {
-  const searchTerm = event.target.value.toLowerCase().trim();
+if (sectionContainer) {
+  const searchbar = document.getElementById("searchbar");
+  searchbar.addEventListener("input", (event) => {
+    const searchTerm = event.target.value.toLowerCase().trim();
 
-  const filteredProducts = allProducts.filter((product) => {
-    return product.title.toLowerCase().includes(searchTerm);
+    const filteredProducts = allProducts.filter((product) => {
+      return product.title.toLowerCase().includes(searchTerm);
+    });
+    displayProducts(filteredProducts);
   });
-  displayProducts(filteredProducts);
-
-  console.log(searchTerm);
-  console.log("user is typing.....");
-});
+}
 
 if (document.getElementById("filter-dropdown")) {
   const filterDropdown = document.getElementById("filter-dropdown");
