@@ -51,11 +51,18 @@ function displayProducts(products) {
       const imageContainer = document.createElement("div");
       const productInfoContainer = document.createElement("div");
       const productName = document.createElement("p");
+      const priceWrapper = document.createElement("div");
       const productPrice = document.createElement("p");
+      const cartIcon = document.createElement("div");
 
+      cartIcon.innerHTML = '<i class="fa-solid fa-cart-shopping"></i>';
+      cartIcon.classList.add("cart-icon-card");
+
+      productPrice.classList.add("p-price");
       productContainer.classList.add("card2");
       imageContainer.classList.add("card-img");
       productInfoContainer.classList.add("card-info");
+      priceWrapper.classList.add("price-wrapper");
       productContainer.setAttribute("role", "button");
       productContainer.setAttribute("tabindex", "0");
       productContainer.setAttribute("aria-label", `View ${product.title}`);
@@ -79,12 +86,14 @@ function displayProducts(products) {
           window.location.href = `productpage.html?id=${product.id}`;
         }
       });
-      imageContainer.append(productImage);
-      productContainer.append(imageContainer);
+      imageContainer.appendChild(productImage);
+      productContainer.appendChild(imageContainer);
       productInfoContainer.appendChild(productName);
-      productInfoContainer.appendChild(productPrice);
+      priceWrapper.appendChild(productPrice);
+      productInfoContainer.appendChild(priceWrapper);
       productContainer.appendChild(productInfoContainer);
-      sectionContainer.append(productContainer);
+      productContainer.appendChild(cartIcon);
+      sectionContainer.appendChild(productContainer);
       if (product.onSale) {
         const productSalePrice = document.createElement("p");
         productSalePrice.classList.add("sale-price");

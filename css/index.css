@@ -50,10 +50,10 @@
 .search-dropdown-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  margin-bottom: 3rem;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block: 3rem;
 }
-
 
 .our-products-image {
   width: 100%;
@@ -78,6 +78,8 @@
 .grid {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
+  margin: 0 auto;
+  margin-inline: 1rem;
 }
 
   .hero-text {
@@ -92,14 +94,20 @@
     flex-direction: column;
     font-size: 1.2rem;
   }
-
+.search-dropdown-wrapper {
+  gap: 2rem;
+}
 }
 @media (min-width: 1025px) {
 .grid {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 3rem;
+  margin: 0 auto;
 }
 
+.search-dropdown-wrapper {
+  gap: 4rem;
+}
 }
 
 

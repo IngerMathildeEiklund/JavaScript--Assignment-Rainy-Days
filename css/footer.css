@@ -23,9 +23,6 @@
 .about-us-info a:hover, .contact-us-info a:hover  {
   color: var(--nav-active-color);
 }
-i {
-  font-size: 1.7rem;
-}
 
 .copyright-footer-text {
   font-size: 1rem;

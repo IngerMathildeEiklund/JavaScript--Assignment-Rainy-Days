@@ -54,11 +54,11 @@ function displayOneProduct() {
     return;
   }
   const sizeDropdown = document.createElement("select");
-  sizeDropdown.classList.add("dropdown");
+  sizeDropdown.classList.add("dropdown-product");
   const sizePlaceholder = document.createElement("option");
   productContainer.classList.add("flex-row");
   sizeAndBTNcontainer.classList.add("size-dropdown-and-button-container");
-  productInfo.classList.add("margin-left");
+  productInfo.classList.add("product-info");
   const sizeLabel = document.createElement("label");
   sizeLabel.setAttribute("for", "size-dropdown");
   sizeLabel.textContent = "Select a size";
@@ -71,17 +71,17 @@ function displayOneProduct() {
     productInfo.appendChild(favoriteProduct);
   }
   const productImage = document.createElement("img");
-  const productName = document.createElement("h3");
+  const productName = document.createElement("p");
   const productDesc = document.createElement("p");
-  const productPrice = document.createElement("h3");
-  const hr = document.createElement("hr");
+  const productPrice = document.createElement("p");
   const productGender = document.createElement("p");
   const productColor = document.createElement("p");
-  const productTags = document.createElement("p");
+
+  productName.classList.add("product-title");
   const addToCartBTN = document.createElement("button");
-  productTags.textContent = `Tags: ${oneProduct.tags}`;
-  addToCartBTN.textContent = "Add to cart";
-  addToCartBTN.classList.add("btn");
+
+  addToCartBTN.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Add to cart`;
+  addToCartBTN.classList.add("add-to-cart-button");
   addToCartBTN.setAttribute("aria-label", `Add ${oneProduct.title} to cart`);
   addToCartBTN.addEventListener("click", () => {
     const selectedSize = sizeDropdown.value;
@@ -108,6 +108,7 @@ function displayOneProduct() {
   productName.textContent = oneProduct.title;
   productDesc.textContent = oneProduct.description;
   productPrice.textContent = `$${oneProduct.price}`;
+  productPrice.classList.add("price-size");
   productPrice.setAttribute(
     "aria-label",
     `Original Price $${oneProduct.price}`,
@@ -135,19 +136,18 @@ function displayOneProduct() {
   if (oneProduct.onSale === true) {
     productPrice.classList.add("strike");
     const salePrice = document.createElement("p");
+    salePrice.classList.add("price-size");
     salePrice.setAttribute(
       "aria-label",
       `Sale price $${oneProduct.discountedPrice}`,
     );
     salePrice.classList.add("sale-price");
-    salePrice.textContent = `On sale! Now ${oneProduct.discountedPrice}`;
+    salePrice.textContent = `$${oneProduct.discountedPrice}`;
     productInfo.appendChild(salePrice);
   }
   productInfo.appendChild(productPrice);
-  productInfo.appendChild(hr);
   productInfo.appendChild(productGender);
   productInfo.appendChild(productColor);
-  productInfo.appendChild(productTags);
   productInfo.appendChild(sizeAndBTNcontainer);
   sizeAndBTNcontainer.appendChild(sizeLabel);
   sizeAndBTNcontainer.appendChild(sizeDropdown);
