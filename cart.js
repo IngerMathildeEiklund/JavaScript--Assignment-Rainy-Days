@@ -44,9 +44,9 @@ if (cartSummaryContainer && cartContainer && summaryContainer) {
       summaryContainer.innerHTML = "<h2> Order summary </h2>";
       cartContainer.innerHTML = "<h2> Your cart </h2>";
       const clearCartBTN = document.createElement("button");
-      clearCartBTN.textContent = `Clear cart`;
+      clearCartBTN.textContent = `Clear all items from cart`;
       clearCartBTN.setAttribute("aria-label", "Clear all items from cart");
-      clearCartBTN.classList.add("clearBTN");
+      clearCartBTN.classList.add("clear-cart-button");
 
       clearCartBTN.addEventListener("click", () => {
         if (cart.length === 0) {
@@ -62,12 +62,15 @@ if (cartSummaryContainer && cartContainer && summaryContainer) {
       cart.forEach((item, index) => {
         const productContainer = document.createElement("div");
         const productImage = document.createElement("img");
-        const productName = document.createElement("h3");
+        const productInfoWrapper = document.createElement("div");
+        const productName = document.createElement("p");
         const productSize = document.createElement("p");
         const productPrice = document.createElement("p");
         const productQuantity = document.createElement("p");
 
+        productContainer.classList.add("cart-product");
         productImage.src = item.image;
+        productInfoWrapper.classList.add("cart-product-info");
         productImage.classList.add("cart-image");
         productName.textContent = item.title;
         productPrice.textContent = ` $${item.price}`;
@@ -77,11 +80,9 @@ if (cartSummaryContainer && cartContainer && summaryContainer) {
         );
         productSize.textContent = `Size: ${item.size} `;
         productQuantity.textContent = `Quantity: ${item.quantity}`;
-        const hr = document.createElement("hr");
-        productContainer.appendChild(hr);
         const deleteBTN = document.createElement("button");
-        deleteBTN.textContent = "Remove item";
-        deleteBTN.classList.add("btn");
+        deleteBTN.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+        deleteBTN.classList.add("delete-button");
         deleteBTN.setAttribute("aria-label", `Remove ${item.title} from cart`);
         deleteBTN.addEventListener("click", () => {
           cart.splice(index, 1);
@@ -93,9 +94,11 @@ if (cartSummaryContainer && cartContainer && summaryContainer) {
         });
 
         productContainer.appendChild(productImage);
-        productContainer.appendChild(productName);
-        productContainer.appendChild(productSize);
-        productContainer.appendChild(productPrice);
+        productInfoWrapper.appendChild(productName);
+        productInfoWrapper.appendChild(productSize);
+        productInfoWrapper.appendChild(productPrice);
+
+        productContainer.appendChild(productInfoWrapper);
         if (item.onSale) {
           const salePrice = document.createElement("p");
           salePrice.classList.add("sale-price");
@@ -104,11 +107,10 @@ if (cartSummaryContainer && cartContainer && summaryContainer) {
             `Sale price $${item.discountedPrice}`,
           );
           productPrice.classList.add("strike");
-          salePrice.textContent = `Sale! Now $${item.discountedPrice}`;
-          productContainer.appendChild(salePrice);
+          salePrice.textContent = `$${item.discountedPrice}`;
+          productInfoWrapper.appendChild(salePrice);
         }
-
-        productContainer.appendChild(productQuantity);
+        productInfoWrapper.appendChild(productQuantity);
         productContainer.appendChild(deleteBTN);
         cartContainer.appendChild(productContainer);
         cartContainer.appendChild(clearCartBTN);
@@ -117,7 +119,7 @@ if (cartSummaryContainer && cartContainer && summaryContainer) {
       const checkoutBTN = document.createElement("button");
       checkoutBTN.textContent = `Continue to checkout`;
       checkoutBTN.setAttribute("aria-label", "Continue to checkout");
-      checkoutBTN.classList.add("btn");
+      checkoutBTN.classList.add("checkout-button");
       checkoutBTN.addEventListener("click", () => {
         window.location.href = `details.html`;
       });

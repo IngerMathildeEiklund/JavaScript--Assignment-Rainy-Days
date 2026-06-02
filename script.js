@@ -5,6 +5,7 @@ export const ALL_PRODUCTS_ENDPOINT = "/rainy-days";
 export const ONE_PRODUCT_ENDPOINT = "/rainy-days";
 let allProducts = [];
 const sectionContainer = document.querySelector(".new-arrivals");
+
 async function getAllProducts(url, endpoint) {
   if (!sectionContainer) {
     return;
@@ -39,7 +40,8 @@ function displayProducts(products) {
     }
     sectionContainer.innerHTML = "";
     if (products.length === 0) {
-      sectionContainer.innerHTML = "<p> No products found </p>";
+      sectionContainer.innerHTML =
+        "<p class='centered'> No products found matching search </p>";
       return;
     }
 
@@ -47,11 +49,20 @@ function displayProducts(products) {
       const productContainer = document.createElement("div");
       const productImage = document.createElement("img");
       const imageContainer = document.createElement("div");
-      const productName = document.createElement("h3");
+      const productInfoContainer = document.createElement("div");
+      const productName = document.createElement("p");
+      const priceWrapper = document.createElement("div");
       const productPrice = document.createElement("p");
+      const cartIcon = document.createElement("div");
 
-      productContainer.classList.add("card");
+      cartIcon.innerHTML = '<i class="fa-solid fa-cart-shopping"></i>';
+      cartIcon.classList.add("cart-icon-card");
+
+      productPrice.classList.add("p-price");
+      productContainer.classList.add("card2");
       imageContainer.classList.add("card-img");
+      productInfoContainer.classList.add("card-info");
+      priceWrapper.classList.add("price-wrapper");
       productContainer.setAttribute("role", "button");
       productContainer.setAttribute("tabindex", "0");
       productContainer.setAttribute("aria-label", `View ${product.title}`);
@@ -75,13 +86,18 @@ function displayProducts(products) {
           window.location.href = `productpage.html?id=${product.id}`;
         }
       });
-      imageContainer.append(productImage);
-      productContainer.append(imageContainer, productName, productPrice);
-      sectionContainer.append(productContainer);
+      imageContainer.appendChild(productImage);
+      productContainer.appendChild(imageContainer);
+      productInfoContainer.appendChild(productName);
+      priceWrapper.appendChild(productPrice);
+      productInfoContainer.appendChild(priceWrapper);
+      productContainer.appendChild(productInfoContainer);
+      productContainer.appendChild(cartIcon);
+      sectionContainer.appendChild(productContainer);
       if (product.onSale) {
         const productSalePrice = document.createElement("p");
         productSalePrice.classList.add("sale-price");
-        productSalePrice.textContent = `On sale! Now $${product.discountedPrice}`;
+        productSalePrice.textContent = `$${product.discountedPrice}`;
         productSalePrice.setAttribute(
           "aria-label",
           `Sale price $${product.discountedPrice}`,
@@ -159,6 +175,18 @@ function sortByLowToHighPrice() {
 }
 
 getAllProducts(url, ALL_PRODUCTS_ENDPOINT);
+
+if (sectionContainer) {
+  const searchbar = document.getElementById("searchbar");
+  searchbar.addEventListener("input", (event) => {
+    const searchTerm = event.target.value.toLowerCase().trim();
+
+    const filteredProducts = allProducts.filter((product) => {
+      return product.title.toLowerCase().includes(searchTerm);
+    });
+    displayProducts(filteredProducts);
+  });
+}
 
 if (document.getElementById("filter-dropdown")) {
   const filterDropdown = document.getElementById("filter-dropdown");

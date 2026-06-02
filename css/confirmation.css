@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-self: center;
   gap:1rem;
+  padding: 1rem;
 }
 
 .image-text-summary-container {
@@ -31,6 +32,7 @@
 .confirmation-summary-container {
   display:flex;
   flex-direction: row;
+  padding: 3rem;
 }
 
 .confirmation-summary-container { 

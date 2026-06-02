@@ -7,14 +7,19 @@
   align-content: center;
   gap: 1rem;
 }
+#ordersummary-section {
+   background-color: white;
+}
 .details-sections {
   display: flex;
   flex-direction: column;
+   background-color: white;
 }
 #payment-options {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+ 
 }
 img {
   width: clamp(40px, 5vw, 60px);
@@ -24,6 +29,7 @@ img {
 @media (min-width: 768px) {
 .details-ordersummary-content {
   flex-direction: row;
+  
 }
 
 .payment-options-container {

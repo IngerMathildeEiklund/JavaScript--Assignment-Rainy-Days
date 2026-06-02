@@ -8,7 +8,7 @@ export function renderOrderSummary(cart, summaryContainer) {
   cart.forEach((item) => {
     const orderTitleSummary = document.createElement("li");
     const orderPriceSummary = document.createElement("li");
-    orderTitleSummary.textContent = item.title;
+    orderTitleSummary.textContent = `${item.quantity} x ${item.title}`;
     orderPriceSummary.textContent = item.onSale
       ? `$${item.discountedPrice}`
       : `$${item.price}`;
@@ -19,6 +19,8 @@ export function renderOrderSummary(cart, summaryContainer) {
         : `Price $${item.price}`,
     );
     const hr = document.createElement("hr");
+    hr.classList.add("separator");
+    orderPriceSummary.classList.add("bold");
     orderPriceSummary.appendChild(hr);
     summaryList.appendChild(orderTitleSummary);
     summaryList.appendChild(orderPriceSummary);
@@ -26,7 +28,7 @@ export function renderOrderSummary(cart, summaryContainer) {
   const total = cart.reduce((sum, item) => {
     return sum + (item.onSale ? item.discountedPrice : item.price);
   }, 0);
-  const orderTotal = document.createElement("h3");
+  const orderTotal = document.createElement("p");
   orderTotal.textContent = `Order total: $${total.toFixed(2)}`;
   orderTotal.setAttribute("aria-label", `Order total $${total.toFixed(2)}`);
   summaryContainer.appendChild(orderTotal);

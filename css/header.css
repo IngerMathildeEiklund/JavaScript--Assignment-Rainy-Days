@@ -8,7 +8,6 @@
   align-items: center;
   padding-inline: 2rem;
   padding-block: 1rem;
-  
 }
 .searchbar-desktop:focus {
   outline: 3px solid var(--inputfield-focus-color);
@@ -20,144 +19,37 @@
   color: var(--main-text-color);
 }
 
-nav {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding-block:1rem;
 
-}
-.home-page,
-  .mens-page,
-  .womens-page {
-    color: var(--main-text-color);
-  }
-  .nav-container a:hover {
-    color: var(--nav-active-color);
-  }
 
-.search-bar-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-block: 0.5rem;
-  background-color: var(--primary-color);
-}
-.searchbar {
-  width: 12rem;
-  border-radius: 0.5rem;
-  border-style: solid;
-  padding-block: 0.4rem;
-  padding-inline: 1rem;
-  border: var(--primary-color);
-}
 .searchbar:focus {
   border-color: var(--nav-active-color);
 }
-.fa-magnifying-glass {
-  color: rgb(255, 255, 255);
-  font-size: 1rem;
-}
-
-.searchbar-container  {
-  display: none;  
-}
-
-.searchbar-container .-magnifying-glass-desktop {
- background-color: var(--primary-color);
-}
-
 
 .nav-container {
   background-color: rgb(255, 255, 255);
 }
 
 @media (min-width: 768px) {
-  .searchbar-desktop {
-    display: block;
-  }
+
   .rainy-days-logo {
     order: 1;
   }
-  .searchbar-container {
-    order: 2;
-  }
+
   .user-box {
-    order: 3;
+    order: 2;
+    position: absolute;
+    right: 10rem;
   }
   .shoppingbag-box {
-    order: 4;
-  }
-  .search-bar-div {
-    display: none;
-  }
-  .searchbar {
-    display: none;
-  }
-  .nav-container {
-    background-color: var(--primary-color);
-    padding-inline: 5rem;
-    padding-block: 1rem;
-  }
-  
-  .searchbar-container {
-    display: block;
-  }
-
-
-  .searchbar-container {
-    position: relative;
-  }
-  .magnifying-glass-desktop {
+    order: 3;
     position: absolute;
-    right: 3px;
-    top:6px;
-
+    right: 3rem;
   }
-  .searchbar-desktop {
-    padding-inline: 5rem;
-    padding-block: 0.5rem;
-    border-style: solid;
-    border-radius:0.5rem;
-    font-size: 1rem;
-  }
-
 .header i {
   font-size: 1.5rem;
   color: var(--main-text-color);
 }
-.nav-container a {
-  color:var(--nav-desktop-text-color);
-}
-.nav-container a:focus a:hover {
-  color: var(--nav-desktop-text-color-focus-hover);
-  text-decoration: underline;
 }
 
-  
-}
-@media (min-width: 1025px) {
-
-.nav-container {
-  padding-inline:25rem;
-  font-size: 10rem;
-}
-.nav-container a {
-  font-size: 1.2rem;
-}
-.header {
-  justify-content: left;
-  gap:5rem;
-}
-.searchbar-desktop {
-  width:25rem;
-}
-.searchbar-container {
-  margin-left:auto;
-  display: flex;
-  align-items: right;
-}
-
-}
 
 
