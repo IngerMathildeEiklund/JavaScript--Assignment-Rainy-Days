@@ -28,7 +28,22 @@
   cursor: pointer;
   transition: 0.3s ease-in-out;
 }
-.card:hover {
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.card2 {
+  position: relative;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  box-shadow: 2px 2px 5px 1px rgb(214, 214, 214);
+  border-color: rgb(150, 150, 150);
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.card2:hover {
 transform: scale(1.05);
 }
 
@@ -249,7 +264,6 @@ p {
   font-family: "Open sans",'Helvetica';;
   font-size: 0.9rem;
   color: var(--main-text-color);
-   margin-bottom: 1rem;
 }
 
 a {

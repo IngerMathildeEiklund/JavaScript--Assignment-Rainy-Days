@@ -49,11 +49,13 @@ function displayProducts(products) {
       const productContainer = document.createElement("div");
       const productImage = document.createElement("img");
       const imageContainer = document.createElement("div");
-      const productName = document.createElement("h3");
+      const productInfoContainer = document.createElement("div");
+      const productName = document.createElement("p");
       const productPrice = document.createElement("p");
 
-      productContainer.classList.add("card");
+      productContainer.classList.add("card2");
       imageContainer.classList.add("card-img");
+      productInfoContainer.classList.add("card-info");
       productContainer.setAttribute("role", "button");
       productContainer.setAttribute("tabindex", "0");
       productContainer.setAttribute("aria-label", `View ${product.title}`);
@@ -78,7 +80,10 @@ function displayProducts(products) {
         }
       });
       imageContainer.append(productImage);
-      productContainer.append(imageContainer, productName, productPrice);
+      productContainer.append(imageContainer);
+      productInfoContainer.appendChild(productName);
+      productInfoContainer.appendChild(productPrice);
+      productContainer.appendChild(productInfoContainer);
       sectionContainer.append(productContainer);
       if (product.onSale) {
         const productSalePrice = document.createElement("p");
